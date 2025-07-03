@@ -23,7 +23,7 @@ jobs:
           port: 22
           script: |
             # Clone the repo if not exist
-            if [! -d "namaste_vishwa"]; then
+            if [ ! -d "namaste_vishwa" ]; then
               git clone https://github.com/Jayesh-Kr/namaste_vishwa.git
             fi
 
