@@ -1,0 +1,36 @@
+name: Deploying Namaste Vishwa to EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Push to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
+
+      - name: Executing remote ssh
+        uses: appleboy/ssh-action@1.2.0
+        with:
+          host: 3.110.153.49
+          username: ubuntu
+          key: ${{secrets.PRIVATE_SSH_KEY}}
+          port: 22
+          script: |
+            # Clone the repo if not exist
+            if [! -d "namaste_vishwa"]; then
+              git clone https://github.com/Jayesh-Kr/namaste_vishwa.git
+            fi
+
+            cd namaste_vishwa
+            git pull origin main
+
+            npm install
+            npm run build
+            npm run start 
+
