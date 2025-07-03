@@ -22,6 +22,10 @@ jobs:
           key: ${{secrets.PRIVATE_SSH_KEY}}
           port: 22
           script: |
+
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
             # Clone the repo if not exist
             if [ ! -d "namaste_vishwa" ]; then
               git clone https://github.com/Jayesh-Kr/namaste_vishwa.git
