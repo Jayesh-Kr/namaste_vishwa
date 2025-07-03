@@ -36,5 +36,8 @@ jobs:
 
             npm install
             npm run build
-            npm run start 
+            pm2 describe namaste_vishwa > /dev/null && pm2 restart namaste_vishwa || pm2 start npm --name namaste_vishwa -- start
+
+            pm2 save
+ 
 
